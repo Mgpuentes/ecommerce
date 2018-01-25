@@ -20,7 +20,7 @@ public class Product {
 
     private double price;
 
-    private String condition;
+    private String productCondition;
 
     private String status;
 
@@ -67,12 +67,12 @@ public class Product {
         this.price = price;
     }
 
-    public String getCondition() {
-        return condition;
+    public String getProductCondition() {
+        return productCondition;
     }
 
-    public void setCondition(String condition) {
-        this.condition = condition;
+    public void setProductCondition(String productCondition) {
+        this.productCondition = productCondition;
     }
 
     public String getStatus() {
@@ -96,7 +96,7 @@ public class Product {
             return false;
         if (getCategory() != null ? !getCategory().equals(product.getCategory()) : product.getCategory() != null)
             return false;
-        if (getCondition() != null ? !getCondition().equals(product.getCondition()) : product.getCondition() != null)
+        if (getProductCondition() != null ? !getProductCondition().equals(product.getProductCondition()) : product.getProductCondition() != null)
             return false;
         return getStatus() != null ? getStatus().equals(product.getStatus()) : product.getStatus() == null;
     }
@@ -110,7 +110,7 @@ public class Product {
         result = 31 * result + (getCategory() != null ? getCategory().hashCode() : 0);
         temp = Double.doubleToLongBits(getPrice());
         result = 31 * result + (int) (temp ^ (temp >>> 32));
-        result = 31 * result + (getCondition() != null ? getCondition().hashCode() : 0);
+        result = 31 * result + (getProductCondition() != null ? getProductCondition().hashCode() : 0);
         result = 31 * result + (getStatus() != null ? getStatus().hashCode() : 0);
         return result;
     }
@@ -123,7 +123,7 @@ public class Product {
                 ", description='" + description + '\'' +
                 ", category='" + category + '\'' +
                 ", price=" + price +
-                ", condition='" + condition + '\'' +
+                ", productCondition='" + productCondition + '\'' +
                 ", status='" + status + '\'' +
                 '}';
     }
