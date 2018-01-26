@@ -1,12 +1,12 @@
 package com.code4life.ecommerce.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.code4life.ecommerce.audit.Auditable;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import javax.persistence.*;
 
 @Entity
-public class User {
+public class User extends Auditable<String> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
