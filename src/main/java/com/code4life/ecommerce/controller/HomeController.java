@@ -48,13 +48,5 @@ public class HomeController {
         return "home";
     }
 
-    @GetMapping(value = "/register")
-    public String register() {
-        return "register";
-    }
-
-
-
-
 
 }

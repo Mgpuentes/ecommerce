@@ -47,4 +47,21 @@ public class UserController {
         return "user";
     }
 
+    @GetMapping(value = "/register")
+    public String register(Model model) {
+        User user = new User();
+        model.addAttribute("user", user);
+        return "register";
+    }
+
+    @PostMapping(value = "/register")
+    public String registerUser(@ModelAttribute("user") User user) {
+        if(user != null) {
+            User returned = userService.saveUser(user);
+            LOG.debug("Created user {}", returned);
+        }
+
+        return "redirect:/home";
+    }
+
 }

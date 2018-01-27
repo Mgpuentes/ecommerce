@@ -1,13 +1,16 @@
 package com.code4life.ecommerce.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
+import javax.sql.DataSource;
 import java.util.Arrays;
 import java.util.List;
 
@@ -15,14 +18,20 @@ import java.util.List;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+
     @Autowired
     private Environment environment;
+
+    @Autowired
+    private UserDetailsService userDetailsService;
+
 
     public static final String[] PUBLIC_MATCHERS = {
 
             "/",
             "/product",
-            "/users"
+            "/users",
+            "/register"
 
     };
 
@@ -66,5 +75,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .withUser("user")
                 .password("password")
                 .roles("USER_ROLE");
+
+        auth
+                .userDetailsService(userDetailsService);
+
     }
 }

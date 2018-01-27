@@ -4,6 +4,8 @@ import com.code4life.ecommerce.audit.Auditable;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class User extends Auditable<String> {
@@ -21,6 +23,10 @@ public class User extends Auditable<String> {
     private String email;
 
     private String password;
+
+    @ManyToMany()
+    Set<Role> userRoles = new HashSet<>();
+
 
     public User() {
     }
@@ -72,6 +78,16 @@ public class User extends Auditable<String> {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public Set<Role> getUserRoles() {
+        return userRoles;
+    }
+
+    public void setUserRoles(Set<Role> userRoles) {
+        this.userRoles = userRoles;
+    }
+
+
 
     @Override
     public boolean equals(Object o) {
